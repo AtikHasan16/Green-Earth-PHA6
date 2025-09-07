@@ -83,9 +83,9 @@
       <div id="spinner" class="text-center my-10 content-center hidden h-40">
         <span class="loading loading-spinner loading-xl"></span>
       </div>
-      <div class="grid grid-rows-2 md:grid-cols-12 gap-5">
+      <div class="grid grid-rows-2 md:grid-rows-1 md:grid-cols-12 gap-5">
         <!-- category container -->
-        <div id="category-container" class="col-span-2 p-2">
+        <div id="category-container" class="col-span-2 p-2 h-fit">
           <h1 class="text-xl text-center font-semibold mb-2">Categories</h1>
           <div
             id="all-trees"
@@ -98,7 +98,7 @@
         <!-- card container -->
         <div
           id="card-container"
-          class="col-span-10 md:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4"
+          class="col-span-10 md:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4 h-fit"
         ></div>
         <!-- add to card section -->
         <div
@@ -119,7 +119,53 @@
 
     <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle"></dialog>
     <!-- About the Campaign -->
+
+    <section id="about" class="w-11/12 md:w-6/12 mx-auto pb-10">
+      <h1 class="font-semibold text-center my-10 text-4xl">
+        About the Campaign
+      </h1>
+      <div class="flex md:flex-row flex-col justify-center items-center gap-10">
+        <figure class="flex-2/4">
+          <img class="w-full" src="./assets/about.png" alt="" />
+        </figure>
+
+        <div class="flex-2/4 text-gray-600 space-y-2">
+          <p>
+            Green Earth is a global tree plantation initiative dedicated to
+            fighting climate change. Since our start, we’ve planted over 500,000
+            trees worldwide. By joining our campaign, you help restore forests,
+            create habitats for wildlife, and combat global warming.
+          </p>
+          <ul>
+            <li>• Restoration of natural habitats</li>
+            <li>• Improvement of air quality</li>
+            <li>• Support for local communities</li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <!-- Our Impact -->
+    <section id="gallary" class="bg-green-200 py-10">
+      <div class="w-10/12 mx-auto text-center pb-10">
+        <h1 class="font-semibold text-4xl mb-10">Our Impact</h1>
+        <div
+          class="flex justify-center items-center md:flex-row flex-col gap-4"
+        >
+          <div class="card bg-white shadow-sm text-center py-10 px-20">
+            <h2 class="font-bold text-4xl text-green-700">500K+</h2>
+            <p>Trees Planted</p>
+          </div>
+          <div class="card bg-white shadow-sm text-center py-10 px-20">
+            <h2 class="font-bold text-4xl text-green-700">500K+</h2>
+            <p>Trees Planted</p>
+          </div>
+          <div class="card bg-white shadow-sm text-center py-10 px-20">
+            <h2 class="font-bold text-4xl text-green-700">500K+</h2>
+            <p>Trees Planted</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Plant a tree -->
     <!-- Footer -->
     <script src="./main.js"></script>
