@@ -44,6 +44,8 @@ const displayAllTrees = (data) => {
   const allTrees = document.getElementById("card-container");
   allTrees.innerHTML = "";
   data.forEach((element) => {
+    // console.log(element);
+
     allTrees.innerHTML += `
     <div class="card bg-white p-4 rounded-xl space-y-2 h-[380px]">
             <figure class="h-[185px] rounded-xl">
@@ -53,7 +55,7 @@ const displayAllTrees = (data) => {
               />
             </figure>
 
-            <h2 class="text-[14px] font-semibold">${element.name}</h2>
+            <h2 onclick="openModal(${element.id})" class="text-[14px] font-semibold">${element.name}</h2>
             <p class="text-xs">
               ${element.description}
             </p>
@@ -100,6 +102,8 @@ const displayCards = (data) => {
   allTrees.innerHTML = "";
   cardContainer.innerHTML = "";
   data.forEach((element) => {
+    console.log(element);
+
     cardContainer.innerHTML += `
     <div class="card bg-white p-4 rounded-xl space-y-2 h-[380px]">
             <figure class="h-[185px] rounded-xl">
@@ -109,7 +113,7 @@ const displayCards = (data) => {
               />
             </figure>
 
-            <h2 class="text-[14px] font-semibold">${element.name}</h2>
+            <h2 onclick="openModal(${element.id})" class="text-[14px] font-semibold">${element.name}</h2>
             <p class="text-xs">
               ${element.description}
             </p>
@@ -172,4 +176,50 @@ const removeCart = (buttonElement, id) => {
   console.log(cartPrice);
 
   document.getElementById("total-count").innerText = totalAmount - cartPrice;
+};
+
+const openModal = async (id) => {
+  const response = await fetch(
+    `https://openapi.programming-hero.com/api/plant/${id}`
+  );
+  const data = await response.json();
+  displayModal(data.plants);
+};
+
+const displayModal = (data) => {
+  console.log(data);
+
+  const modalBox = document.getElementById("my_modal_5");
+  modalBox.innerHTML = "";
+  console.log(modalBox);
+
+  modalBox.innerHTML += `
+<div class="modal-box">
+        <h3 class="text-2xl text-center font-bold mb-3">${data.name}</h3>
+        <div class="flex justify-center items-center gap-4">
+        <figure class="rounded-2xl flex-1/2">
+          <img class="rounded-xl" src="${data.image}" alt="" />
+        </figure>
+        <div class="flex-1/2">
+        <p class="font-semibold pt-4 text-xl">Category: ${data.category}</p>
+        <p class="py-2 text-lg font-semibold">Price: <i class="fa-solid fa-bangladeshi-taka-sign"></i>${data.price}</p>
+        <p class="">
+          <span class="font-bold">Description:</span> ${data.description}
+        </p>
+        </div>
+        
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn rounded-lg bg-green-700 text-white">
+              Close
+            </button>
+          </form>
+        </div>
+      </div>
+
+`;
+
+  my_modal_5.showModal();
 };
