@@ -16,7 +16,7 @@ const displayCategory = (data) => {
     // console.log(d);
 
     categoryContainer.innerHTML += `<div id="cat-btn-${d.id}" onclick="loadCard(${d.id})" 
-    class=" category rounded-md hover:bg-green-700 hover:text-white py-2 pl-2">
+    class=" category rounded-md hover:bg-green-700 hover:text-white py-2 pl-2 mb-2 hover:transition-colors duration-200">
               <p>${d.category_name}</p>
             </div>`;
   });
