@@ -81,19 +81,20 @@
       <h1 class="text-center text-3xl font-semibold">Choose Your Trees</h1>
       <div class="grid grid-rows-2 md:grid-cols-12 gap-5">
         <!-- category container -->
-        <div id="category-container" class="border col-span-2 p-2">
+        <div id="category-container" class="col-span-2 p-2">
           <h1 class="text-xl font-semibold mb-2">Categories</h1>
-          <div class="rounded-md hover:bg-green-700 hover:text-white py-2 pl-2">
+          <div
+            onclick="loadAllTrees()"
+            class="rounded-md hover:bg-green-700 hover:text-white py-2 pl-2"
+          >
             <p>All Trees</p>
           </div>
         </div>
         <!-- card container -->
         <div
           id="card-container"
-          class="border col-span-10 md:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4"
-        >
-          
-        </div>
+          class="col-span-10 md:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4"
+        ></div>
         <!-- add to card section -->
         <div
           id="add-card"
