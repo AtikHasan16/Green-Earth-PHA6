@@ -6,16 +6,68 @@ const loadCategory = async () => {
   const data = await response.json();
   displayCategory(data.categories);
 };
-
+// displaying category section
 const displayCategory = (data) => {
   const categoryContainer = document.getElementById("category-container");
   data.forEach((d) => {
-    console.log(d.category_name);
-    categoryContainer.innerHTML += `<div class="rounded-md hover:bg-green-700 hover:text-white py-2 pl-2">
+    // console.log(d.id);
+    categoryContainer.innerHTML += `<div id="cat-btn-${d.id}" onclick="loadCard(${d.id})" 
+    class="rounded-md hover:bg-green-700 hover:text-white py-2 pl-2">
               <p>${d.category_name}</p>
             </div>`;
   });
 };
-
 loadCategory();
-// Add event listener to the container and delegate to the category  buttons
+
+// display card by clicking category
+const loadCard = async (id) => {
+  //   console.log(id);
+  const response = await fetch(
+    `https://openapi.programming-hero.com/api/category/${id}`
+  );
+  const data = await response.json();
+  displayCards(data.plants);
+  console.log(data.plants);
+};
+// category: "Flowering Tree";
+// description: "Known as the ‘Flame of the Forest’, this tree bursts into a vibrant display of red flowers every summer. Perfect for beautifying avenues and gardens.";
+// id: 4;
+// image: "https://i.ibb.co.com/1YzsVWjm/Gulmohar-min.jpg";
+// name: "Gulmohar";
+// price: 400;
+
+// displaying card section
+const displayCards = (data) => {
+  let cardContainer = document.getElementById("card-container");
+  cardContainer.innerHTML = "";
+  data.forEach((element) => {
+    cardContainer.innerHTML += `
+    <div class="card bg-white p-4 rounded-xl space-y-2 h-[380px]">
+            <figure class="h-[185px] rounded-xl">
+              <img
+                class="bg-cover"
+                src="${element.image}"
+              />
+            </figure>
+
+            <h2 class="text-[14px] font-semibold">${element.name}</h2>
+            <p class="text-xs">
+              ${element.description}
+            </p>
+            <div class="flex justify-between items-center mb-4">
+              <div
+                class="py-2 px-3 bg-green-100 rounded-2xl text-green-700 text-[14px]"
+              >
+                ${element.category}
+              </div>
+              <p class="font-semibold text-right text-[14px]"><i class="fa-solid fa-bangladeshi-taka-sign"></i>${element.price}</p>
+            </div>
+
+            <button id="${element.id}" class="btn btn-block rounded-full bg-green-700 text-white">
+              Add to Cart
+            </button>
+          </div>
+    
+    `;
+  });
+};
