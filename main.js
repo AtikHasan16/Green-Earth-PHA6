@@ -132,8 +132,6 @@ const displayCards = (data) => {
 };
 
 const addToCard = async (id) => {
-  console.log(id);
-
   const response = await fetch(
     `https://openapi.programming-hero.com/api/plant/${id}`
   );
@@ -142,24 +140,36 @@ const addToCard = async (id) => {
 };
 
 const displayAddToCart = (data) => {
-  console.log(data);
   const addCartContainer = document.getElementById("add-card-container");
   let totalCount = document.getElementById("total-count");
   let totalAmount = Number(totalCount.innerText);
-  console.log(totalAmount);
-
   addCartContainer.innerHTML += `
-    <div
+    <div id="cart-${data.id}"
               class="bg-green-50 h-[64px] rounded-lg p-2 flex justify-between items-center mb-2"
             >
               <div class="mb-2">
                 <h1 class="text-[14px] font-semibold">${data.name}</h1>
-                <p class="text-gray-500"><span id="priceCount">${data.price}</span></p>
+                <p class="text-gray-500"><span id="price-count-${data.id}">${data.price}</span></p>
               </div>
-              <button  class="btn btn-ghost p-0 text-2xl text-gray-500">
+              <button id="hide-cart-${data.id}" onclick="removeCart(this, ${data.id})" class="btn btn-ghost p-0 text-2xl text-gray-500">
                 <i class="fa-regular fa-circle-xmark"></i>
               </button>
             </div>
     `;
   document.getElementById("total-count").innerText = totalAmount + data.price;
+};
+
+const removeCart = (buttonElement, id) => {
+  const cartDiv = buttonElement.parentElement;
+  cartDiv.style.display = "none";
+
+  let totalCount = document.getElementById("total-count");
+  let totalAmount = Number(totalCount.innerText);
+  console.log(totalAmount);
+
+  const cartId = document.getElementById(`price-count-${id}`);
+  const cartPrice = Number(cartId.innerText);
+  console.log(cartPrice);
+
+  document.getElementById("total-count").innerText = totalAmount - cartPrice;
 };
