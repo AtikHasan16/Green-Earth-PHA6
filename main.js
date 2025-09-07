@@ -8,11 +8,15 @@ const loadCategory = async () => {
 };
 // displaying category section
 const displayCategory = (data) => {
+  //   console.log(data);
+
   const categoryContainer = document.getElementById("category-container");
+  document.getElementById("all-trees").classList.add("select-btn");
   data.forEach((d) => {
-    // console.log(d.id);
+    // console.log(d);
+
     categoryContainer.innerHTML += `<div id="cat-btn-${d.id}" onclick="loadCard(${d.id})" 
-    class="rounded-md hover:bg-green-700 hover:text-white py-2 pl-2">
+    class=" category rounded-md hover:bg-green-700 hover:text-white py-2 pl-2">
               <p>${d.category_name}</p>
             </div>`;
   });
@@ -26,12 +30,18 @@ const loadAllTrees = async () => {
   );
   const data = await response.json();
   displayAllTrees(data.plants);
+
+  const removeBtn = document.querySelectorAll(".category");
+  removeBtn.forEach((element) => {
+    element.classList.remove("select-btn");
+    document.getElementById("all-trees").classList.add("select-btn");
+  });
 };
 loadAllTrees();
 /**should get hint for this: how to short */
 // display all plants by clicking all trees
 const displayAllTrees = (data) => {
-  console.log(data);
+  //   console.log(data);
   const allTrees = document.getElementById("card-container");
   allTrees.innerHTML = "";
   data.forEach((element) => {
@@ -73,19 +83,21 @@ const loadCard = async (id) => {
   );
   const data = await response.json();
   displayCards(data.plants);
-  console.log(data.plants);
+
+  const removeBtn = document.querySelectorAll(".category");
+  removeBtn.forEach((element) => {
+    element.classList.remove("select-btn");
+  });
+  //   console.log(removeBtn);
+  const selectBtn = document.getElementById(`cat-btn-${id}`);
+  selectBtn.classList.add("select-btn");
 };
-// category: "Flowering Tree";
-// description: "Known as the ‘Flame of the Forest’, this tree bursts into a vibrant display of red flowers every summer. Perfect for beautifying avenues and gardens.";
-// id: 4;
-// image: "https://i.ibb.co.com/1YzsVWjm/Gulmohar-min.jpg";
-// name: "Gulmohar";
-// price: 400;
 
 // displaying card section by category
 const displayCards = (data) => {
   let cardContainer = document.getElementById("card-container");
   const allTrees = document.getElementById("card-container");
+
   allTrees.innerHTML = "";
   cardContainer.innerHTML = "";
   data.forEach((element) => {
