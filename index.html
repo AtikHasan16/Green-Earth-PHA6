@@ -54,7 +54,7 @@
     <!-- banner -->
 
     <section
-      class="bg-[#CFF0DC] flex justify-between items-center flex-col md:flex-row mb-20"
+      class="bg-[#CFF0DC] flex justify-between items-center flex-col md:flex-row mb-10"
     >
       <figure class="hidden md:block">
         <img class="" src="./assets/hero-leaf1.png" alt="" />
@@ -77,8 +77,8 @@
     </section>
 
     <!-- Category -->
-    <section class="md:w-10/12 mx-auto p-2">
-      <h1 class="text-center text-3xl font-semibold">Choose Your Trees</h1>
+    <section id="plantatree" class="md:w-10/12 mx-auto p-2">
+      <h1 class="text-center text-3xl font-semibold mb-5">Choose Your Trees</h1>
       <div class="grid grid-rows-2 md:grid-cols-12 gap-5">
         <!-- category container -->
         <div id="category-container" class="col-span-2 p-2">
@@ -99,9 +99,26 @@
         <!-- add to card section -->
         <div
           id="add-card"
-          class="border col-span-12 md:col-span-2 order-first md:order-last"
+          class="row-span-6 md:row-auto col-span-12 md:col-span-2 order-first md:order-last bg-white rounded-xl p-2 h-fit"
         >
-          Add card section
+          <h1 class="text-xl font-semibold mb-2">Your Cart</h1>
+          <!-- Add to card container -->
+          <div class="add-card-container">
+            <div
+              class="bg-green-50 h-[64px] rounded-lg p-2 flex justify-between items-center mb-2"
+            >
+              <div class="mb-2">
+                <h1 class="text-[14px] font-semibold">Product Name</h1>
+                <p class="text-gray-500"><span id="cart-price">500</span></p>
+              </div>
+              <button class="btn btn-ghost p-0 text-2xl text-gray-500">
+                <i class="fa-regular fa-circle-xmark"></i>
+              </button>
+            </div>
+          </div>
+          <h1 class="font-semibold flex justify-between">
+            Total: <span id="total-count">0</span>
+          </h1>
         </div>
       </div>
     </section>
