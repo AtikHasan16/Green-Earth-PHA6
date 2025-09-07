@@ -60,7 +60,7 @@ const displayAllTrees = (data) => {
     // console.log(element);
 
     allTrees.innerHTML += `
-    <div class="card bg-white p-4 rounded-xl space-y-2 h-[380px]">
+    <div class="card shadow-xl bg-white p-4 rounded-xl space-y-2 h-[380px]">
             <figure class="h-[185px] rounded-xl">
               <img
                 class="bg-cover"
@@ -117,10 +117,10 @@ const displayCards = (data) => {
   allTrees.innerHTML = "";
   cardContainer.innerHTML = "";
   data.forEach((element) => {
-    console.log(element);
+    // console.log(element);
 
     cardContainer.innerHTML += `
-    <div class="card bg-white p-4 rounded-xl space-y-2 h-[380px]">
+    <div class="card shadow-xl bg-white p-4 rounded-xl space-y-2 h-[380px]">
             <figure class="h-[185px] rounded-xl">
               <img
                 class="bg-cover"
@@ -169,7 +169,7 @@ const displayAddToCart = (data) => {
             >
               <div class="mb-2">
                 <h1 class="text-[14px] font-semibold">${data.name}</h1>
-                <p class="text-gray-500"><span id="price-count-${data.id}">${data.price}</span></p>
+                <p class="text-gray-500"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span id="price-count-${data.id}">${data.price}</span></p>
               </div>
               <button id="hide-cart-${data.id}" onclick="removeCart(this, ${data.id})" class="btn btn-ghost p-0 text-2xl text-gray-500">
                 <i class="fa-regular fa-circle-xmark"></i>
@@ -185,11 +185,11 @@ const removeCart = (buttonElement, id) => {
 
   let totalCount = document.getElementById("total-count");
   let totalAmount = Number(totalCount.innerText);
-  console.log(totalAmount);
+  //   console.log(totalAmount);
 
   const cartId = document.getElementById(`price-count-${id}`);
   const cartPrice = Number(cartId.innerText);
-  console.log(cartPrice);
+  //   console.log(cartPrice);
 
   document.getElementById("total-count").innerText = totalAmount - cartPrice;
 };
@@ -203,11 +203,11 @@ const openModal = async (id) => {
 };
 
 const displayModal = (data) => {
-  console.log(data);
+  //   console.log(data);
 
   const modalBox = document.getElementById("my_modal_5");
   modalBox.innerHTML = "";
-  console.log(modalBox);
+  //   console.log(modalBox);
 
   modalBox.innerHTML += `
 <div class="modal-box">
