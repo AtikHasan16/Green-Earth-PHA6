@@ -1,3 +1,15 @@
+// loading spinner function
+
+const loadingSpinner = (condition) => {
+  if (condition === true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("card-container").classList.add("invisible");
+  } else {
+    document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("card-container").classList.remove("invisible");
+  }
+};
+
 // get category data from API
 const loadCategory = async () => {
   const response = await fetch(
@@ -16,7 +28,7 @@ const displayCategory = (data) => {
     // console.log(d);
 
     categoryContainer.innerHTML += `<div id="cat-btn-${d.id}" onclick="loadCard(${d.id})" 
-    class=" category rounded-md hover:bg-green-700 hover:text-white py-2 pl-2 mb-2 hover:transition-colors duration-200">
+    class=" category rounded-md hover:bg-green-700 hover:text-white py-2 pl-2 mb-2 hover:transition-colors duration-200 text-center">
               <p>${d.category_name}</p>
             </div>`;
   });
@@ -25,6 +37,7 @@ loadCategory();
 
 // get all cards for all trees
 const loadAllTrees = async () => {
+  loadingSpinner(true);
   const response = await fetch(
     "https://openapi.programming-hero.com/api/plants"
   );
@@ -74,10 +87,12 @@ const displayAllTrees = (data) => {
           </div>
     `;
   });
+  loadingSpinner(false);
 };
 
 // get card details from API by clicking category
 const loadCard = async (id) => {
+  loadingSpinner(true);
   //   console.log(id);
   const response = await fetch(
     `https://openapi.programming-hero.com/api/category/${id}`
@@ -133,6 +148,7 @@ const displayCards = (data) => {
     
     `;
   });
+  loadingSpinner(false);
 };
 
 const addToCard = async (id) => {

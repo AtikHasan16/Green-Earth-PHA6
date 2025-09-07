@@ -79,14 +79,18 @@
     <!-- Category -->
     <section id="plantatree" class="md:w-10/12 mx-auto p-2">
       <h1 class="text-center text-3xl font-semibold mb-5">Choose Your Trees</h1>
+      <!-- loading spinner -->
+      <div id="spinner" class="text-center my-10 content-center hidden h-40">
+        <span class="loading loading-spinner loading-xl"></span>
+      </div>
       <div class="grid grid-rows-2 md:grid-cols-12 gap-5">
         <!-- category container -->
         <div id="category-container" class="col-span-2 p-2">
-          <h1 class="text-xl font-semibold mb-2">Categories</h1>
+          <h1 class="text-xl text-center font-semibold mb-2">Categories</h1>
           <div
             id="all-trees"
             onclick="loadAllTrees()"
-            class="category rounded-md hover:bg-green-700 hover:text-white py-2 pl-2 mb-2 hover:transition-colors duration-200"
+            class="category rounded-md hover:bg-green-700 hover:text-white py-2 pl-2 mb-2 hover:transition-colors duration-200 text-center"
           >
             <p>All Trees</p>
           </div>
@@ -113,9 +117,7 @@
     <!-- Modal section -->
     <!-- Open the modal using ID.showModal() method -->
 
-    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-      
-    </dialog>
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle"></dialog>
     <!-- About the Campaign -->
     <!-- Our Impact -->
     <!-- Plant a tree -->
