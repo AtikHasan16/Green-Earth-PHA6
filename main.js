@@ -30,7 +30,6 @@ const loadAllTrees = async () => {
   );
   const data = await response.json();
   displayAllTrees(data.plants);
-
   const removeBtn = document.querySelectorAll(".category");
   removeBtn.forEach((element) => {
     element.classList.remove("select-btn");
@@ -67,7 +66,7 @@ const displayAllTrees = (data) => {
               <p class="font-semibold text-right text-[14px]"><i class="fa-solid fa-bangladeshi-taka-sign"></i>${element.price}</p>
             </div>
 
-            <button id="add-btn-${element.id}" class="btn btn-block rounded-full bg-green-700 text-white">
+            <button onclick="addToCard(${element.id})" id="add-btn-${element.id}" class="btn btn-block rounded-full bg-green-700 text-white">
               Add to Cart
             </button>
           </div>
@@ -123,11 +122,44 @@ const displayCards = (data) => {
               <p class="font-semibold text-right text-[14px]"><i class="fa-solid fa-bangladeshi-taka-sign"></i>${element.price}</p>
             </div>
 
-            <button id="add-btn-${element.id}" class="btn btn-block rounded-full bg-green-700 text-white">
+            <button onclick="addToCard(${element.id})" id="add-btn-${element.id}" class="btn add-button btn-block rounded-full bg-green-700 text-white">
               Add to Cart
             </button>
           </div>
     
     `;
   });
+};
+
+const addToCard = async (id) => {
+  console.log(id);
+
+  const response = await fetch(
+    `https://openapi.programming-hero.com/api/plant/${id}`
+  );
+  const data = await response.json();
+  displayAddToCart(data.plants);
+};
+
+const displayAddToCart = (data) => {
+  console.log(data);
+  const addCartContainer = document.getElementById("add-card-container");
+  let totalCount = document.getElementById("total-count");
+  let totalAmount = Number(totalCount.innerText);
+  console.log(totalAmount);
+
+  addCartContainer.innerHTML += `
+    <div
+              class="bg-green-50 h-[64px] rounded-lg p-2 flex justify-between items-center mb-2"
+            >
+              <div class="mb-2">
+                <h1 class="text-[14px] font-semibold">${data.name}</h1>
+                <p class="text-gray-500"><span id="priceCount">${data.price}</span></p>
+              </div>
+              <button  class="btn btn-ghost p-0 text-2xl text-gray-500">
+                <i class="fa-regular fa-circle-xmark"></i>
+              </button>
+            </div>
+    `;
+  document.getElementById("total-count").innerText = totalAmount + data.price;
 };
