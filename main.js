@@ -150,7 +150,7 @@ const displayCards = (data) => {
   });
   loadingSpinner(false);
 };
-
+// Add to card section data fetching
 const addToCard = async (id) => {
   const response = await fetch(
     `https://openapi.programming-hero.com/api/plant/${id}`
@@ -158,7 +158,7 @@ const addToCard = async (id) => {
   const data = await response.json();
   displayAddToCart(data.plants);
 };
-
+// add to card section display
 const displayAddToCart = (data) => {
   const addCartContainer = document.getElementById("add-card-container");
   let totalCount = document.getElementById("total-count");
@@ -179,6 +179,7 @@ const displayAddToCart = (data) => {
   document.getElementById("total-count").innerText = totalAmount + data.price;
 };
 
+// remove card button
 const removeCart = (buttonElement, id) => {
   const cartDiv = buttonElement.parentElement;
   cartDiv.style.display = "none";
@@ -194,6 +195,7 @@ const removeCart = (buttonElement, id) => {
   document.getElementById("total-count").innerText = totalAmount - cartPrice;
 };
 
+// modal opening function for fetching data
 const openModal = async (id) => {
   const response = await fetch(
     `https://openapi.programming-hero.com/api/plant/${id}`
@@ -201,6 +203,8 @@ const openModal = async (id) => {
   const data = await response.json();
   displayModal(data.plants);
 };
+
+// Modal display function
 
 const displayModal = (data) => {
   //   console.log(data);
